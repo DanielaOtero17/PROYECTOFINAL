@@ -35,11 +35,26 @@ public class Graph_Matrix<T> {
 		return vertex.get(index);
 	}
 	
+	
 	public int size() {
 		return vertex.size();
 	}
+	
 	public Integer indexOf(T key) {
 		return vertex.indexOf(key);
 	}
+	
+	
+	public void removeNode(T d) {
+		int index = indexOf(d);
+		for(int i = 0; i < adjMatrix.length;i++) {
+			adjMatrix[index][i] = 0;
+//			adjMatrix[i][index] = 0;
+		}
+		vertex.remove(d);
+	}
+
+	
+	
 	
 }
