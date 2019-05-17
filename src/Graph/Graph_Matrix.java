@@ -1,8 +1,11 @@
 package Graph;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Stack;
 
 import graph.Pair;
 
@@ -129,5 +132,81 @@ public class Graph_Matrix<T> {
 			return prev;
 		}
 
+	  
+	  public int[] bellman_ford(T source) {
+
+			int[] dist = new int[vertex.size()];
+			int index = indexOf(source);
+			dist[index] = 0;
+
+			for(int i = 0; i < dist.length; i++) {
+				if(i != index) {
+					dist[i] = Integer.MAX_VALUE;				
+				}
+			}
+
+
+			for(int j = 0; j < adjMatrix[index].length-1; j++) {
+				for(int i = 0; i < adjMatrix[index].length; i++) {
+					if(adjMatrix[index][i] != 0) {
+						int weight = adjMatrix[index][i];
+						if(dist[index] + weight < dist[i]) {
+							dist[i] = dist[index] + weight;
+						}
+					}
+				}
+				
+			}
+			return dist;
+		}
+
+	  public ArrayList<T> bfs(T source) {
+			ArrayList<T> b = new ArrayList<T>();
+			Queue<T> q = new LinkedList<T>();
+			boolean[] visited = new boolean[vertex.size()];
+			visited[indexOf(source)] = true;
+
+			q.add(source);
+			b.add(source);
+
+			while(!q.isEmpty()) {
+				T current = q.poll();
+				int index = indexOf(current);
+				for(int i = 0; i < adjMatrix[index].length; i++) {
+					if(adjMatrix[index][i] != 0) {
+						if(!visited[i]) {
+							q.add(vertex.get(i));
+							b.add(vertex.get(i));
+							visited[i] = true;
+						}					
+					}
+				}
+			}
+			System.out.println(b);
+			return b;
+		}
+	  
+	  public void dfs(T source) {
+			Stack<T> s = new Stack<T>();
+			boolean[] visited = new boolean[vertex.size()];
+			s.push(source);
+			visited[indexOf(source)] = true;
+
+			while(!s.isEmpty()) {
+				T current = s.pop();
+				int index = indexOf(current);
+				for(int i = 0; i < adjMatrix[index].length; i++) {
+					if(adjMatrix[index][i] != 0) {
+						if(!visited[i]) {
+							s.push(vertex.get(i));
+							System.out.println(i);
+							visited[i] = true;
+						}					
+					}
+				}
+			}
+		}
+		
+		
 	
 }
