@@ -7,6 +7,7 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
 
+import graph.Graph;
 import graph.Pair;
 
 public class Graph_Matrix<T> {
@@ -208,5 +209,36 @@ public class Graph_Matrix<T> {
 		}
 		
 		
-	
+	  public int[][] getAdjMatrix() {
+			return adjMatrix;
+		}
+
+		
+		public void setAdjMatrix(int[][] adjMatrix) {
+			this.adjMatrix = adjMatrix;
+		}
+
+		public int getNumberOfVertex() {
+			return numberOfVertex;
+		}
+
+		
+		public void setNumberOfVertex(int numberOfVertex) {
+			this.numberOfVertex = numberOfVertex;
+		}
+
+		
+		public List<T> getVertex() {
+			return vertex;
+		}
+
+		
+		public void setVertex(List<T> vertex) {
+			this.vertex = vertex;
+		}
+
+		public Graph<T> kurskal(T source){
+			return null;
+		}
+	  
 }
