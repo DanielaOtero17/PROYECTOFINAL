@@ -1,6 +1,6 @@
 package Graph;
 
-public class Pair<T> {
+public class Pair<T> implements Comparable{
 	
 	private T object;
 	private Integer w;
