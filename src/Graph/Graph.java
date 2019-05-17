@@ -200,4 +200,36 @@ public class Graph<T> {
 			}
 			return edges;
 		}
+		
+		public long prim(T source) {
+			PriorityQueue<Integer[]> q = new PriorityQueue<>();
+			T y;
+			boolean[] vis = new boolean[vertex.size()];
+			long minimumCost = 0;
+			Integer[] s = {indexOf(source),0};
+			q.add(s);
+			Integer[] curr = null;
+			while(!q.isEmpty()) {
+				curr = q.poll();
+				Integer index = curr[0];
+
+				if(vis[index] == true) continue;
+
+				minimumCost += (Integer) curr[1];
+				vis[index] = true;
+
+				HashMap<T,Integer> adj = getAdjacents(get(index));
+				for(T x : adj.keySet()) {
+					y = x;
+					if(!vis[indexOf(y)]) {
+						Integer[] aux = {indexOf(y), adj.get(y)};
+						q.add(aux);
+					}
+				}
+			}
+
+			return minimumCost;
+		}
+		
+		
 }
