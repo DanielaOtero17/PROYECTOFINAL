@@ -212,6 +212,7 @@ public class Graph<T> {
 				if(i != indexOf(source)) {
 					dist[i] = Integer.MAX_VALUE;				
 				}
+				
 			}
 			for(int i = 0; i < prev.length; i++) {
 				prev[i] = -1;
