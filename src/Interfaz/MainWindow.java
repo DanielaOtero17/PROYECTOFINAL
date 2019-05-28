@@ -1,7 +1,10 @@
 package Interfaz;
 
 import java.awt.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
+import Model.*;
 
 
 public class MainWindow extends JFrame{
@@ -99,13 +102,7 @@ public class MainWindow extends JFrame{
 		}
 		s.setVisible(true);
 	}
-	
-//	public void initAddStationDialog() {
-//		as = new AddStationDialog(this);
-//		as.setVisible(true);
-//	}
-	
-	/////////////////////////////////////////////////////////////
+
 	
 	public void searchPath(Object o, Object t) {
 		Station origin = (Station) o;
@@ -115,6 +112,9 @@ public class MainWindow extends JFrame{
 	}
 	
 	public void putResults(Station[] path) {
+		
+		clearResultsPanel();
+		
 		for(int i = path.length-1; i >= 0;i--) {
 			if(path[i] != null) {
 				String[] d = {path[i].getName(),path[i].getAdress()};

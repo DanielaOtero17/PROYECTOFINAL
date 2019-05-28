@@ -2,6 +2,7 @@ package Interfaz;
 
 
 import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
@@ -18,6 +19,7 @@ public class PanelResultPath extends JPanel{
 		setBackground(Color.WHITE);
 	}
 	
+
 	public void addMiniPanelResult(String[] d) {
 		JPanel aux = new JPanel(new GridLayout(2,1));
 		aux.setPreferredSize(new Dimension(200,30));
