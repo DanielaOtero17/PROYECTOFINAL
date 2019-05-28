@@ -200,6 +200,50 @@ public class Graph<T> {
 			}
 			return edges;
 		}		
+
+		public int[] dijkstra(T source) {
+
+			int[] dist = new int[vertex.size()];
+			boolean[] vis = new boolean[vertex.size()];
+			int[] prev = new int[vertex.size()];
+
+			dist[indexOf(source)] = 0;
+			for(int i = 0; i < dist.length; i++) {
+				if(i != indexOf(source)) {
+					dist[i] = Integer.MAX_VALUE;				
+				}
+				
+			}
+			for(int i = 0; i < prev.length; i++) {
+				prev[i] = -1;
+			}
+			PriorityQueue<Pair<T>> qPesos = new PriorityQueue<Pair<T>>();
+			qPesos.add(new Pair<T>(source,0));
+
+			while(!qPesos.isEmpty()) {
+				Pair<T> actual = qPesos.poll();
+				int index = indexOf(actual.getObject());
+				if(!vis[index]) {
+					vis[index] = true;
+					HashMap<T,Integer> adj = getAdjacents(actual.getObject());
+
+					for(T x : adj.keySet()) {
+						int weight = adj.get(x);
+						int srcIndex = indexOf(x);
+						if(!vis[indexOf(x)]) {
+							if(dist[index] + weight < dist[srcIndex]) {
+								dist[srcIndex] = dist[index] + weight;
+								prev[srcIndex] = index;
+								qPesos.add(new Pair<T>(x,weight));
+							}
+						}
+					}
+				}
+			}
+
+			return prev;
+		}
+		
 		public long prim(T source) {
 			PriorityQueue<Integer[]> q = new PriorityQueue<>();
 			T y;
